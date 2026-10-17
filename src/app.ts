@@ -1,6 +1,7 @@
 // import the express application and type definition
 import express, { Express } from "express";
 import morgan  from "morgan";   
+import itemRoutes from "./api/v1/routes/itemRoutes";
 
 // initialize the express application
 const app: Express = express();
@@ -14,7 +15,13 @@ interface HealthCheckResponse {
     version: string;
 }
 
+// Creates automatic logs
 app.use(morgan("combined"));
+//Tells app we want to use json objects in our requests
+app.use(express.json());
+
+//Tells app to use that default path and listen for requests from the routes in itemRoutes
+app.use("/api/v1/items", itemRoutes);
 
 // respond to GET request at endpoint "/" with message
 app.get("/", (req, res) => {

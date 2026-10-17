@@ -2,3 +2,4 @@ node_modules/
 dist/
 
 .vscode/
+spread_operator.ts

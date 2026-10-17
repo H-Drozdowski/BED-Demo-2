@@ -1,5 +1,6 @@
 // import the express application and type definition
 import express, { Express } from "express";
+import morgan  from "morgan";   
 
 // initialize the express application
 const app: Express = express();
@@ -12,6 +13,8 @@ interface HealthCheckResponse {
     timestamp: string;
     version: string;
 }
+
+app.use(morgan("combined"));
 
 // respond to GET request at endpoint "/" with message
 app.get("/", (req, res) => {
